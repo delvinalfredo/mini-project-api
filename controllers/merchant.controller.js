@@ -1,0 +1,1 @@
+const modelMerchant = require('../models/merchant.model')
