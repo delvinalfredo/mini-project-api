@@ -18,6 +18,17 @@ const Product = function (product) {
     });
   };
 
+  Product.getListProductId = (id, result) => {
+    dbConn.query("SELECT * FROM product where id=?", id, (err, res) => {
+      if (err) {
+        console.log("Error while fetching product", err);
+        result(null, err);
+      } else {
+        console.log("Product fetched successfully");
+        result(null, res);
+      }
+    });
+  }
   
 
   module.exports = Product;
