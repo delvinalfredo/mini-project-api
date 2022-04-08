@@ -1,4 +1,5 @@
 const mysql = require('mysql');
+const pass = process.env.PASSWORD
 
 // create here mysql connection
 

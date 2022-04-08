@@ -5,12 +5,11 @@ const port = process.env.PORT || 3000;
 
 const merchant = require('./routes/merchant.route')
 
-
-
-
 app.get('/', (req, res)=>{
   res.send("Hello world!")
 })
+
+app.use('/merchant', merchant);
 
 
 app.listen(port, () => {
