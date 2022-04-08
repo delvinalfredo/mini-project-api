@@ -22,4 +22,5 @@ exports.getProductId = (req,res) =>{
     })
 }
 
+
 exports.getProductId
