@@ -25,10 +25,25 @@ exports.createNewProducts = (req, res) =>{
     if(req.body.constructor === Object && Object.keys(req.body).length === 0){
         res.send(400).send({success: false, message: 'Please fill all fields'});
     }else{
-        modelStores.createProducts(productsReqData, (err, store)=>{
+        modelProduct.createProducts(productsReqData, (err, store)=>{
             if(err)
             res.send(err);
-            res.json({status: true, message: 'Products Created Successfully', data: store.insertId})
+            res.status(200).json({status: true, message: 'Products Created Successfully', data: store.insertId})
+        })
+    }
+}
+
+exports.updateProducts = (req, res)=>{
+    const productsReqData = new modelStores(req.body);
+    console.log('productsReqData update', productsReqData);
+    // check null
+    if(req.body.constructor === Object && Object.keys(req.body).length === 0){
+        res.send(400).send({success: false, message: 'Please fill all fields'});
+    }else{
+        modelProduct.updateProducts(req.params.id, productsReqData, (err, store)=>{
+            if(err)
+            res.send(err);
+            res.status(200).json({status: true, message: 'Product updated Successfully'})
         })
     }
 }

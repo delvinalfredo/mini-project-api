@@ -32,10 +32,31 @@ const Product = function (product) {
       [productsReqData.name, productsReqData.quantity, productsReqData.price, id],
       (err, res) => {
         if (err) {
-          console.log("Error while updating the order");
+          console.log("Error while updating the product");
           result(null, err);
         } else {
           console.log("Products updated successfully");
+          result(null, res);
+        }
+      }
+    );
+  };
+
+  Product.updateProducts = (id, productReqData, result) => {
+    connection.query(
+      "UPDATE product SET name=?,quantity=?,price=? WHERE id = ?",
+      [
+      productReqData.name,
+      productReqData.quantity,
+      productReqData.price,
+        id,
+      ],
+      (err, res) => {
+        if (err) {
+          console.log("Error while updating the product");
+          result(null, err);
+        } else {
+          console.log("product updated successfully");
           result(null, res);
         }
       }
