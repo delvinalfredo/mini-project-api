@@ -49,7 +49,7 @@ exports.updateProducts = (req, res)=>{
 }
 
 exports.deleteProducts = (req, res)=>{
-    modelProducts.deleteProducts(req.params.id, (err, merchant_service)=>{
+    modelProduct.deleteProducts(req.params.id, (err, merchant_service)=>{
         if(err)
         res.send(err);
         res.status(200).json({success:true, message: 'Product deleted successully!'});
