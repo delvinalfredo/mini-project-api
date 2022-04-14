@@ -63,4 +63,17 @@ const Product = function (product) {
     );
   };
 
+  Product.deleteProducts = (id, result)=>{
+    connection.query("UPDATE product SET is_deleted=? WHERE id = ?", [1, id], (err, res)=>{
+        if(err){
+            console.log('Error while deleting the product');
+            result(null, err);
+        }else{
+            console.log("Product deleted successfully");
+            result(null, res);
+        }
+    });
+}
+
+
   module.exports = Product;

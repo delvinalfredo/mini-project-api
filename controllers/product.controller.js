@@ -19,31 +19,39 @@ exports.getProductId = (req,res) =>{
 }
 
 exports.createNewProducts = (req, res) =>{
-    const productsReqData = new modelStores(req.body);
+    const productsReqData = new modelProducts(req.body);
     console.log('productsReqData', productsReqData);
     // check null
     if(req.body.constructor === Object && Object.keys(req.body).length === 0){
         res.send(400).send({success: false, message: 'Please fill all fields'});
     }else{
-        modelProduct.createProducts(productsReqData, (err, store)=>{
+        modelProduct.createProducts(productsReqData, (err, merchant_service)=>{
             if(err)
             res.send(err);
-            res.status(200).json({status: true, message: 'Products Created Successfully', data: store.insertId})
+            res.status(200).json({status: true, message: 'Products Created Successfully', data: merchant_service.insertId})
         })
     }
 }
 
 exports.updateProducts = (req, res)=>{
-    const productsReqData = new modelStores(req.body);
+    const productsReqData = new modelProducts(req.body);
     console.log('productsReqData update', productsReqData);
     // check null
     if(req.body.constructor === Object && Object.keys(req.body).length === 0){
         res.send(400).send({success: false, message: 'Please fill all fields'});
     }else{
-        modelProduct.updateProducts(req.params.id, productsReqData, (err, store)=>{
+        modelProduct.updateProducts(req.params.id, productsReqData, (err, merchant_service)=>{
             if(err)
             res.send(err);
             res.status(200).json({status: true, message: 'Product updated Successfully'})
         })
     }
+}
+
+exports.deleteProducts = (req, res)=>{
+    modelProducts.deleteProducts(req.params.id, (err, merchant_service)=>{
+        if(err)
+        res.send(err);
+        res.status(200).json({success:true, message: 'Product deleted successully!'});
+    })
 }
